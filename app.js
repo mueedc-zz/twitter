@@ -9,3 +9,5 @@ app.get('/', (request, response) => {
     response.send('Welcome');
 });
 app.use(morgan('combined'));
+
+console.log("test")
