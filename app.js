@@ -4,6 +4,11 @@ const express = require('express'),
 const app = express();
 const routes = require('./routes');
 
+const socketio = require('socket.io');
+// ...
+const server = app.listen(3000);
+const io = socketio.listen(server);
+
 app.use('/', routes);
 
 app.use(morgan('combined'));
