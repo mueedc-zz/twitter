@@ -1,10 +1,15 @@
 const express = require('express'),
     morgan = require('morgan'),
     chalk = require('chalk'),
-    lodash = require('lodash'),
     nunjucks = require('nunjucks');
 const app = express();
+const routes = require('./routes');
+
+app.use('/', routes);
+
 app.use(morgan('combined'));
+
+app.use(express.static("public"));
 
 app.set('view engine', 'html');
 app.engine('html', nunjucks.render);
@@ -14,12 +19,19 @@ nunjucks.configure('views', {
     noCache: true,
 });
 
-const people = [{name: 'Full'}, {name: 'Stack'}, {name: 'Son'}];
-app.get('/', (request, response) => {
-    response.render('index', {title: 'Hall of Fame', people: people});
-});
+
 
 app.listen(3000, () => {console.log('YO IM HERE')});
+
+
+// TEST CODE
+
+// const people = [{name: 'Full'}, {name: 'Stack'}, {name: 'Son'}];
+// app.get('/', (request, response) => {
+//     response.render('index', {title: 'Hall of Fame', people: people});
+// });
+
+
 // let locals = {
 //     title: 'An Example',
 //     people: [
