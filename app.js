@@ -1,6 +1,5 @@
 const express = require('express'),
     morgan = require('morgan'),
-    chalk = require('chalk'),
     nunjucks = require('nunjucks');
 const app = express();
 const routes = require('./routes');
@@ -9,7 +8,7 @@ app.use('/', routes);
 
 app.use(morgan('combined'));
 
-app.use(express.static("public"));
+app.use(express.static('public'));
 
 app.set('view engine', 'html');
 app.engine('html', nunjucks.render);
@@ -18,8 +17,6 @@ nunjucks.configure('views', {
     express: app,
     noCache: true,
 });
-
-
 
 app.listen(3000, () => {console.log('YO IM HERE')});
 
